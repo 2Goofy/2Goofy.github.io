@@ -15,60 +15,11 @@ var dc = {};
 
 var homeHtmlUrl = "snippets/home-snippet.html";
 var allCategoriesUrl =
-  " https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
+  "https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
-  
 var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/L.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/A.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/B.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/C.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CM.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CSR.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CU.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/D.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/DK.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/DS.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/F.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/FR.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/FY.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NF.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NL.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NS.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/PF.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SO.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SP.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SR.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SS.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/T.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/V.json";
-  var menuItemsUrl =
-  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/VG.json";
-  
-  
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
@@ -133,7 +84,7 @@ showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
   allCategoriesUrl,
   buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
-  true); // Explicitely setting the flag to get JSON from server processed into an object literal
+  true); // Explicitly setting the flag to get JSON from server processed into an object literal
 });
 // *** finish **
 
@@ -141,7 +92,7 @@ $ajaxUtils.sendGetRequest(
 // Builds HTML for the home page based on categories array
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
-
+  // console.log(categories)
   // Load home snippet page
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
@@ -151,8 +102,7 @@ function buildAndShowHomeHTML (categories) {
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
       // var chosenCategoryShortName = ....
-      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-
+      var chosenCategoryShortName = chooseRandomCategory(categories);
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
@@ -166,16 +116,14 @@ function buildAndShowHomeHTML (categories) {
       // it into the home html snippet.
       //
       // var homeHtmlToInsertIntoMainPage = ....
-      chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
-
-
-      // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
+      
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName.short_name + "'");
+      // console.log(chosenCategoryShortName)
+      // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
       // ....
-      insertHtml('#main-content', homeHtmlToInsertIntoMainPage);
-
+      document.querySelector("#main-content").innerHTML = homeHtmlToInsertIntoMainPage;
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
@@ -205,7 +153,7 @@ dc.loadMenuCategories = function () {
 dc.loadMenuItems = function (categoryShort) {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
-    menuItemsUrl + categoryShort,
+    menuItemsUrl + categoryShort + ".json",
     buildAndShowMenuItemsHTML);
 };
 
