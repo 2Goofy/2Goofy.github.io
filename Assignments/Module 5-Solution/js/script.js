@@ -13,15 +13,64 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 var dc = {};
 
- var homeHtml = "snippets/home-snippet.html";
-  var allCategoriesUrl =
-    "https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
-  var categoriesTitleHtml = "snippets/categories-title-snippet.html";
-  var categoryHtml = "snippets/category-snippet.html";
+var homeHtmlUrl = "snippets/home-snippet.html";
+var allCategoriesUrl =
+  " https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
+var categoriesTitleHtml = "snippets/categories-title-snippet.html";
+var categoryHtml = "snippets/category-snippet.html";
+  
+var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/L.json";
   var menuItemsUrl =
-    "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
-  var menuItemsTitleHtml = "snippets/menu-items-title.html";
-  var menuItemHtml = "snippets/menu-item.html";
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/A.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/B.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/C.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CM.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CSR.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/CU.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/D.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/DK.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/DS.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/F.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/FR.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/FY.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NF.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NL.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/NS.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/PF.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SO.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SP.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SR.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/SS.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/T.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/V.json";
+  var menuItemsUrl =
+  "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/VG.json";
+  
+  
+var menuItemsTitleHtml = "snippets/menu-items-title.html";
+var menuItemHtml = "snippets/menu-item.html";
 
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
@@ -40,7 +89,8 @@ var showLoading = function (selector) {
 // with propValue in given 'string'
 var insertProperty = function (string, propName, propValue) {
   var propToReplace = "{{" + propName + "}}";
-  string = string.replace(new RegExp(propToReplace, "g"), propValue);
+  string = string
+    .replace(new RegExp(propToReplace, "g"), propValue);
   return string;
 };
 
