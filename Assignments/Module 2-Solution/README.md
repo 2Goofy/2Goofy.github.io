@@ -4,4 +4,4 @@
 
 <a href="https://www.coursera.org/learn/html-css-javascript-for-web-developers">HTML, CSS, and Javascript for Web Developers</a>
 
-<img src="2Goofy.github.io/Assignments/Module 2-Solution/Module 2.PNG">
+<img src="Assignments/Module 2-Solution/Module 2.PNG">
